@@ -1,5 +1,5 @@
 
-
+const User = require('../models/user')
 
 
 
@@ -17,12 +17,17 @@ const getUser = (req, res) =>{
     })
 }
 
-const postUser = (req, res) => {
+const postUser = async(req, res) => {
 
     const body = req.body
+    const user = new User( body )
+
+    await user.save()
+
+
     res.json({
         msg: 'post Api - controlador',
-        body
+        user
     })
 }
 
